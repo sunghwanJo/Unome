@@ -1,0 +1,52 @@
+@import url("base.css");
+/*
+*	Web Fonts
+*/
+@import url(http://fonts.googleapis.com/css?family=Ranchers);
+@import url("font-awesome-ie7.css");
+@import url("font-awesome.css");
+
+/*
+*	Typography
+*/
+body {
+	background-color: rgba(39,226,255,0.5);
+	font-family: 'Ranchers';
+}
+
+
+.title{
+	font-size:80px;
+    color: #ffffff;	
+}
+
+.sub-title{
+	
+}
+
+.twitter-button {
+	color:white;
+	font-size:30px;
+}
+
+.big-icon { font-size:80px }
+.mid-icon { font-size:40px }
+.small-icon { font-size:20px }
+
+.footer			{ 
+	position:fixed; 
+	background:black; 
+	color:white; 
+	width:100%;
+	bottom:0
+}
+
+
+/*
+*
+*	Text align
+*/
+
+.text-center {
+	text-align:center;
+}
