@@ -9,11 +9,14 @@
 	<div class="content text-center">
 		<h1 class="title">Unome</h1>
 		<h2 class="sub-title">Do you know me?</h2>
-		<div class="twitter-button">
-			<i class="icon-twitter mid-icon"></i>
-			<span>Sign in twitter</span>
+        <div class="twitter-button">
+            <i class="icon-twitter mid-icon"></i>
+            {% if g.user %}
+            <a href="{{ url_for('logout') }}"><span>sign out [{{ g.user.name }}]</span></a>
+            {% else %}
+            <a href="{{ url_for('login') }}"><span>Sign in</span></a>
+            {% endif %}
 		</div>
-		
 	</div>
 	<div class="footer text-center">
 		made by luman, pherox
