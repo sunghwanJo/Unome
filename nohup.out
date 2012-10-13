@@ -1,0 +1,22 @@
+ * Running on http://127.0.0.1:5000/
+ * Restarting with reloader
+ * Detected change in 'unome.py', reloading
+ * Restarting with reloader
+ * Detected change in 'unome.py', reloading
+ * Restarting with reloader
+ * Detected change in 'unome.py', reloading
+ * Restarting with reloader
+ * Detected change in 'unome.py', reloading
+ * Restarting with reloader
+Traceback (most recent call last):
+  File "unome.py", line 28, in <module>
+    @app.route('twitter_login')
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 977, in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 63, in wrapper_func
+    return f(self, *args, **kwargs)
+  File "/Library/Python/2.7/site-packages/flask/app.py", line 943, in add_url_rule
+    rule = self.url_rule_class(rule, methods=methods, **options)
+  File "/Library/Python/2.7/site-packages/werkzeug/routing.py", line 550, in __init__
+    raise ValueError('urls must start with a leading slash')
+ValueError: urls must start with a leading slash
