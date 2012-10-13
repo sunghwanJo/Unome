@@ -1,9 +1,13 @@
-from flask import Flask, render_template, session, request, redirect,url_for
+from flask import Flask, render_template, session, request, redirect,url_for, flash
 from flask_oauth import OAuth
 import oauth2 as oauth
 
 app = Flask(__name__)
 oauth = OAuth()
+
+app.secret_key='DEVELOPE KEY'
+consumer_key = 'dih0GsM4wQMZU9AfxgmQ'
+consumer_secret= 'AbcQIjh1xDQvrVgqn39LmV9KK2SYyAWTGzVodTaZO90'
 
 
 twitter = oauth.remote_app('twitter',
@@ -11,8 +15,8 @@ twitter = oauth.remote_app('twitter',
     request_token_url='https://api.twitter.com/oauth/request_token',
     access_token_url='https://api.twitter.com/oauth/access_token',
     authorize_url='https://api.twitter.com/oauth/authorize',
-    consumer_key='FgUE4UGn3CFh8IbZkIHsUQ',
-    consumer_secret='9QVjzTBCCEpSuknCtQtvv64DN3t4HXMmzAai6QPY'
+    consumer_key=consumer_key,
+    consumer_secret=consumer_secret
 )
 
 @twitter.tokengetter
@@ -26,7 +30,7 @@ def main_view():
 @app.route('/twitter_login', methods={'POST', 'GET'})
 def login():
 	print '------- Login -------'	
-	return twitter.authorize(callback=url_for('oauth_authorized', next=None))
+	return twitter.authorize(callback=url_for('oauth_authorized', next=request.args.get('next') or request.referrer or None))
 
 @app.route('/oauth-athorized')
 @twitter.authorized_handler
@@ -49,5 +53,5 @@ def oauth_authorized(resp):
 
 
 if __name__=='__main__':
-	app.run(debug=True)
+	app.run(debug=True, host='0.0.0.0', port=2074)
 	
