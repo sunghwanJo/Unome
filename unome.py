@@ -42,6 +42,22 @@ Base.query = db_session.query_property()
 def init_db():
     Base.metadata.create_all(bind=engine)
 
+def __get_tweets():
+    #JUST REST API, we need to change to STREAMING API
+    resp = twitter.get('statuses/home_timeline.json')
+    if resp.status == 200:
+        g.tweets = resp.data
+        # for tweet in tweets 
+        #   tweet.screen_name
+        #   tweet.text
+    else:
+        pass
+    
+
+
+def __filter():
+    pass
+
 class User(Base):
     __tablename__ = 'users'
     id = Column('user_id', Integer, primary_key=True)
@@ -72,9 +88,15 @@ def get_twitter_token(token=None):
 def main_view():
     tweets = None
     if g.user is not None:
-    # user login
-        return render_template('index.html')
+        __get_tweets()
+        return render_template('index.html', tweets = g.tweets)    
     return render_template('index.html')
+
+@app.route('/get_tweet')
+def get_timeline():
+
+    return redirect(request.referrer or url_for('main_view'))
+
 
 @app.route('/twitter_login', methods={'POST', 'GET'})
 def login():
@@ -109,6 +131,8 @@ def logout():
     session.pop('user_id', None)
     return redirect(request.referrer or url_for('main_view'))
 
+
+# App start
 if __name__=='__main__':
 	app.run(host=HOST, port=PORT)
 	

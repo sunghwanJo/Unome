@@ -11,9 +11,16 @@
 */
 body {
 	background-color: rgba(39,226,255,0.5);
-	font-family: 'Ranchers';
 }
 
+a {
+    color:#fff;
+    text-decoration:none;
+}   
+
+.font-Ranchers {
+    font-family: 'Ranchers';
+}
 
 .title{
 	font-size:80px;
@@ -38,7 +45,9 @@ body {
 	background:black; 
 	color:white; 
 	width:100%;
-	bottom:0
+    height:40px;
+	bottom:0;
+    font-size:30px; 
 }
 
 
