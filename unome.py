@@ -1,46 +1,17 @@
 from flask import Flask, render_template, session, request, redirect,url_for, flash, g
-from flask_oauth import OAuth
-
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+from models import User, DB
+from twitter_oauth import *
 
 # configuration
 SECRET_KEY = 'development key'
-DATABASE_URI = 'sqlite:////tmp/flask-oauth.db'
 HOST = '0.0.0.0'
 PORT = 2074
 DEBUG = True
-
-#OAuth configuration
-CONSUMER_KEY = 'QdGOizY0OznyHCwL73S2Uw'
-CONSUMER_SECRET= 'Pv9CexLxhXmTQauQBEvkA7pHlGz1Kru4we8X9iBVAM'
 
 # setip flask
 app = Flask(__name__)
 app.debug = DEBUG
 app.secret_key = SECRET_KEY
-oauth = OAuth()
-
-# Use Twitter API
-twitter = oauth.remote_app('twitter',
-    base_url='https://api.twitter.com/1/',
-    request_token_url='https://api.twitter.com/oauth/request_token',
-    access_token_url='https://api.twitter.com/oauth/access_token',
-    authorize_url='https://api.twitter.com/oauth/authorize',
-    consumer_key=CONSUMER_KEY,
-    consumer_secret=CONSUMER_SECRET
-)
-
-#setup sqlalchemy
-engine = create_engine(DATABASE_URI)
-db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
-
-Base = declarative_base()
-Base.query = db_session.query_property()
-
-def init_db():
-    Base.metadata.create_all(bind=engine)
 
 def __get_tweets():
     #JUST REST API, we need to change to STREAMING API
@@ -52,21 +23,6 @@ def __get_tweets():
         #   tweet.text
     else:
         pass
-    
-
-
-def __filter():
-    pass
-
-class User(Base):
-    __tablename__ = 'users'
-    id = Column('user_id', Integer, primary_key=True)
-    name = Column(String(60))
-    oauth_token = Column(String(200))
-    oauth_secret = Column(String(200))
-
-    def __init__(self, name):
-        self.name = name
 
 @app.before_request
 def before_request():
@@ -75,7 +31,7 @@ def before_request():
         g.user = User.query.get(session['user_id'])
 @app.after_request
 def after_request(response):
-    db_session.remove()
+    DB.db_session.remove()
     return response
 
 @twitter.tokengetter
