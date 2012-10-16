@@ -87,6 +87,10 @@ def logout():
     session.pop('user_id', None)
     return redirect(request.referrer or url_for('main_view'))
 
+@app.route('/unome')
+def unome_view():
+    return render_template('unome.html')
+
 
 # App start
 if __name__=='__main__':

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Welcome to Unome{% endblock %}
+{% block head %}
+{{ super() }}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/jquery.mCustomScrollbar.css') }}">
+<script src="{{ url_for('static', filename='js/jquery.mousewheel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.mCustomScrollbar.min.js') }}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+<style>
+    #graph_scroll {
+        width:1000px;
+        height:500px;
+        background:blue;
+        font-size:50px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h1>Child template file</h1>
+<div id="graph_scroll">
+    THISISISISIS GRAHGPGPGPPHPHPHPHPHPHPHPHPHPHasdfasdfasdfP
+</div>
+
+<script>
+    $(function(){
+        console.log('fuckk')
+        $("#graph_scroll").mCustomScrollbar({
+         horizontalScroll: Boolean,   
+        });
+    })
+</script>
+{% endblock %}
