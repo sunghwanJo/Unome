@@ -76,7 +76,7 @@ def oauth_authorized(resp):
 
     user.oauth_token = resp['oauth_token']
     user.oauth_secret = resp['oauth_token_secret']
-    db_session.commit()
+    DB.db_session.commit()
 
     session['user_id'] = user.id
     flash('You were signed in')

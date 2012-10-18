@@ -1,11 +1,14 @@
-from jpype import *
+import os.path, sys
 
-class jhannanum:
-    def __init__(self, jvm_path, class_path):
-        startJVM(getDefaultJVMPath())
-        
+pyhannanumPath = os.path.join(os.path.abspath('.'),'pyhannanum')
+sys.path.append(pyhannanumPath)
+
+import pynanum
 
 
+analyzer = WorkflowMorphAnalyzer()
 
-def analyze_tweet()
+analyzer.operation_analyzer()
+
+def analyze_tweet():
     pass
