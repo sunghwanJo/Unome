@@ -63,7 +63,7 @@ def login():
 @twitter.authorized_handler
 def oauth_authorized(resp):
     print '-------OAuth Authorized Phase-------'
-    next_url = request.args.get('next') or url_for('main_view')
+    next_url = url_for('unome_view')
     if resp is None:
         flash(u'You denied the request to sign in.')
         return redirect(next_url)

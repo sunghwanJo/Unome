@@ -9,27 +9,14 @@
 	<div class="content text-center">
 		<h1 class="title font-Ranchers">Unome</h1>
 		<h2 class="sub-title font-Ranchers">Do you know me?</h2>
-        <div class="twitter-button">
+        <div class="twitter-button font-Ranchers">
             <i class="icon-twitter mid-icon"></i>
             {% if g.user %}
-            <a href="{{ url_for('logout') }}"><span>sign out [{{ g.user.name }}]</span></a>
+            <a href="{{ url_for('logout') }}"><span>sign out</span></a>
             {% else %}
             <a href="{{ url_for('login') }}"><span>Sign in</span></a>
             {% endif %}
         </div>
-
-            <h3>Your Timeline</h3>
-        {% if tweets %}
-                <ul>
-                        {% for tweet in tweets %}
-                              <li><a href="http://twitter.com/{{ tweet.user.screen_name
-                                          }}">{{ tweet.user.screen_name }}</a>: {{ tweet.text|urlize }}
-                                          {% endfor %}
-                                              </ul>
-                                                  {% endif %}
-	</div>
-	<div class="footer text-center">
-	    Copyright © 2012 - All Rights Reserved - Layer Software Lab.
 	</div>
 </div>
 <script>

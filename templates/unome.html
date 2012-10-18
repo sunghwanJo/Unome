@@ -8,23 +8,28 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
 <style>
-    #graph_scroll {
-        width:1000px;
-        height:500px;
-        background:blue;
-        font-size:50px;
-    }
+#graph_scroll {
+    width:100%;
+    height:500px;
+    background:#D5E7F2;
+    font-size:50px;
+}
+
+
 </style>
 {% endblock %}
 {% block content %}
-<h1>Child template file</h1>
-<div id="graph_scroll">
-    THISISISISIS GRAHGPGPGPPHPHPHPHPHPHPHPHPHPHasdfasdfasdfP
+<h1>Unome</h1>
+<div class="header">
+
 </div>
+<div id="graph_scroll">
+    <span>Jush Graph? mmmmmmm</span>    
+</div>
+
 
 <script>
     $(function(){
-        console.log('fuckk')
         $("#graph_scroll").mCustomScrollbar({
          horizontalScroll: Boolean,   
         });
