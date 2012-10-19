@@ -11,7 +11,9 @@ class DB:
 
     Base = declarative_base()
     Base.query = db_session.query_property()
-    Base.metadata.create_all(bind=engine)
+    # You if the first time you run this program. excute init_db() 
+    def init_db()
+        Base.metadata.create_all(bind=engine)
     
 
 class User(DB.Base):
