@@ -1,5 +1,5 @@
 from flask_oauth import OAuth
-
+from flask import g
 #OAuth configuration
 CONSUMER_KEY = 'QdGOizY0OznyHCwL73S2Uw'
 CONSUMER_SECRET= 'Pv9CexLxhXmTQauQBEvkA7pHlGz1Kru4we8X9iBVAM'
