@@ -1,8 +1,10 @@
 from flask_oauth import OAuth
 from flask import g
 #OAuth configuration
-CONSUMER_KEY = 'PFa4jZPyBEFdKS5vEHwIg'
-CONSUMER_SECRET= 'vzsNg17Pxt6gojxFQTfPizre0LQagMANk73CnS1loQ'
+#CONSUMER_KEY = 'PFa4jZPyBEFdKS5vEHwIg'
+#CONSUMER_SECRET= 'vzsNg17Pxt6gojxFQTfPizre0LQagMANk73CnS1loQ'
+#CONSUMER_KEY = 'QdGOizY0OznyHCwL73S2Uw'
+#CONSUMER_SECRET= 'Pv9CexLxhXmTQauQBEvkA7pHlGz1Kru4we8X9iBVAM'
 
 oauth = OAuth()
 # Use Twitter API
@@ -23,6 +25,6 @@ def __get_tweets():
         #   tweet.screen_name
         #   tweet.text
         g.tweets = resp.data
-	print g.tweets
+
     else:
         pass
