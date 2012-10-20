@@ -6,14 +6,30 @@
 <script src="{{ url_for('static', filename='js/jquery.mousewheel.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/jquery.mCustomScrollbar.min.js') }}"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-
-<style>
-
-</style>
 {% endblock %}
-
 {% block content %}
-
+<div class="contents">
+    <div class="mainbar">
+        <div class="mainbar-left"> 
+            <h1 class="text-center">-</h1>
+            {% for tweet in g.tweets %}
+            <div class="ntweetbubble text-center" >{{ tweet.user.name }} : {{ tweet.text }}</div>
+            {% endfor %}
+        </div>   
+        <div class="mainbar-mid">
+            &nbsp; 
+        </div>
+        <div class="mainbar-right"> 
+            <h1 class="text-center">+</h1>
+            {% for tweet in g.tweets %}
+            <div class="ptweetbubble text-center" >{{ tweet.user.name }} : {{ tweet.text }}</div>
+            {% endfor %}
+        </div>   
+    </div>
+    <div class="sidebar">
+     Side bar
+    </div>
+</div>
 <script>
     $(function(){
         console.log('jQuery init')

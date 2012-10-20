@@ -99,7 +99,9 @@ body {
 /*
  * Addresses outline displayed oddly in Chrome
  */
-
+a:-webkit-any-link {
+    cursor: auto;
+}
 a:focus {
     outline: thin dotted;
 }
@@ -282,7 +284,8 @@ dl,
 menu,
 ol,
 ul {
-    margin: 1em 0;
+    marigin: 1em 0;
+    list-style:none;
 }
 
 dd {
@@ -296,7 +299,7 @@ dd {
 menu,
 ol,
 ul {
-    padding: 0 0 0 40px;
+    padding: 0 0 0 0px;
 }
 
 /*
