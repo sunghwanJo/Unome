@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request, redirect,url_for, flash, g
 from models import User, DB
-from twitter_oauth import *
+from twitter import *
 
 # configuration
 SECRET_KEY = 'development key'
