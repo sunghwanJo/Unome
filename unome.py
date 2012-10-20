@@ -80,6 +80,7 @@ def logout():
 
 @app.route('/unome')
 def unome_view():
+    __get_tweets()
     return render_template('unome.html')
 
 

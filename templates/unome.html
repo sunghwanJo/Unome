@@ -11,17 +11,23 @@
 <div class="contents">
     <div class="mainbar">
         <div class="mainbar-left"> 
-            negative
+            <h1 class="text-center">-</h1>
+            {% for tweet in g.tweets %}
+            <div class="ntweetbubble text-center" >{{ tweet.user.name }} : {{ tweet.text }}</div>
+            {% endfor %}
         </div>   
         <div class="mainbar-mid">
             &nbsp; 
         </div>
         <div class="mainbar-right"> 
-            positive
+            <h1 class="text-center">+</h1>
+            {% for tweet in g.tweets %}
+            <div class="ptweetbubble text-center" >{{ tweet.user.name }} : {{ tweet.text }}</div>
+            {% endfor %}
         </div>   
     </div>
     <div class="sidebar">
-        Side bar
+     Side bar
     </div>
 </div>
 <script>
