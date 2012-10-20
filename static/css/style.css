@@ -13,7 +13,7 @@
     -moz-border-radius:    15px;
     -webkit-border-radius: 15px;
     border-radius:         15px;
-    line-height:100px;
+    line-height:20px;
 }
 
 .ptweetbubble:before {
@@ -38,7 +38,7 @@
     -moz-border-radius:    15px;
     -webkit-border-radius: 15px;
     border-radius:         15px;
-    line-height:100px;
+    line-height:20px;
 }
 
 .ntweetbubble:before {
