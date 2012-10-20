@@ -18,9 +18,9 @@
                     </ul>
                     <ul class="nav-right mid-text">
                         {% if g.user %}
-                        <li><a href="#">{{ g.user.name }}</a>|<a href="#">sign out</a></li>
+                        <li><a href="#">{{ g.user.name }}</a>|<a href="/logout">sign out</a></li>
                         {% else %}
-                        <li><a href="#">Sign in</a></li>
+                        <li><a href="/login">Sign in</a></li>
                         {% endif %}
                     </ul>
                 </div>

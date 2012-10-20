@@ -2,3 +2,4 @@
 *.swp
 *.pyc
 twitter.py
+nohup.out
