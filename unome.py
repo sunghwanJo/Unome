@@ -61,7 +61,7 @@ def oauth_authorized(resp):
 
     if user is None:
         user = User(resp['screen_name'])
-        db_session.add(user)
+        DB.db_session.add(user)
 
     user.oauth_token = resp['oauth_token']
     user.oauth_secret = resp['oauth_token_secret']
