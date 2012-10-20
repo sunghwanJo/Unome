@@ -8,9 +8,9 @@
     {% endblock %}
 </head>
     <body>
-        <div class="container">
-            {% block header %}
-            <div class="header">
+        {% block header %}
+        <div class="header">
+            <div class="header-fixed">
                 <div class="header-inner">
                     <span class="brand big-text font-Ranchers">Unome</span>
                     <ul class="nav-main mid-text">
@@ -24,15 +24,16 @@
                         {% endif %}
                     </ul>
                 </div>
-            </div> 
-            {% endblock %}
-            {% block content %} 
-                
-            {% endblock %}
-            {% block footer %}
-            <div class="footer">
-                <span class="text-center">&copy; Copyright 2012 by <a href="http://lum4n.blogspot.com">luman</a> and <a href="http://">pherox</a>.</span>
             </div>
-            {% endblock %}
+        </div> 
+        {% endblock %}
+        <div class="container">
+        {% block content %} 
+        {% endblock %}
+        </div>    
+        {% block footer %}
+        <div class="footer">
+            <span class="text-center">&copy; Copyright 2012 by <a href="http://lum4n.blogspot.com">luman</a> and <a href="http://">pherox</a>.</span>
         </div>
+        {% endblock %}
 </body>
