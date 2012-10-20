@@ -1,0 +1,4 @@
+# setting for ignoring trash files.
+*.swp
+*.pyc
+twitter.py
