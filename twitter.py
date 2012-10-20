@@ -15,4 +15,13 @@ twitter = oauth.remote_app('twitter',
     consumer_secret=CONSUMER_SECRET
 )
 
-
+def __get_tweets():
+    #JUST REST API, we need to change to STREAMING API
+    resp = twitter.get('statuses/home_timeline.json')
+    if resp.status == 200:
+        g.tweets = resp.data
+        # for tweet in tweets 
+        #   tweet.screen_name
+        #   tweet.text
+    else:
+        pass

@@ -6,9 +6,12 @@ sys.path.append(pyhannanumPath)
 import pynanum
 
 
-analyzer = WorkflowMorphAnalyzer()
-
-analyzer.operation_analyzer()
+def analyzer_init():
+    analyzer = WorkflowMorphAnalyzer()
+    analyzer.operation_analyzer()
 
 def analyze_tweet():
-    pass
+    if analyzer.__get_operation_flag() == True:
+        pass
+
+    

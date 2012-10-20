@@ -30,5 +30,10 @@ class WorkflowMorphAnalyzer:
         if self.operation_flag == True:
             self.workflow.analyze(plaintext)
             return self.workflow.getResultOfDocument()
+        else:
+            return -1 
+
+    def __get_operation_flag(self):
+        return self.operation_flag
 
 

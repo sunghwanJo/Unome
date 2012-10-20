@@ -13,17 +13,6 @@ app = Flask(__name__)
 app.debug = DEBUG
 app.secret_key = SECRET_KEY
 
-def __get_tweets():
-    #JUST REST API, we need to change to STREAMING API
-    resp = twitter.get('statuses/home_timeline.json')
-    if resp.status == 200:
-        g.tweets = resp.data
-        # for tweet in tweets 
-        #   tweet.screen_name
-        #   tweet.text
-    else:
-        pass
-
 @app.before_request
 def before_request():
     g.user = None
