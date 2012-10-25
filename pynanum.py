@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding:utf-8 -*-
 import os.path, jpype
 
 jarpath = os.path.join(os.path.abspath('.'), 'jhannanum.jar')
@@ -10,17 +10,15 @@ WorkflowFactoryCls = jpype.JClass('kr.ac.kaist.swrc.jhannanum.hannanum.WorkflowF
 
 
 class WorkflowMorphAnalyzer:
-    operation_flag = False
-    workflow = WorkflowFactoryCls.getPredefinedWorkflow(WorkflowFactoryCls.WORKFLOW_MORPH_ANALYZER)
-
-    def operation_analyzer(self):  
+    def __init__(self):  
         try:
+            self.workflow = WorkflowFactoryCls.getPredefinedWorkflow(WorkflowFactoryCls.WORKFLOW_MORPH_ANALYZER)
             self.workflow.activateWorkflow(True)
             self.operation_flag = True
             print 'analyze start'
         except :
+            self.operation_flag = False
             print 'exception !!'
-            exit()
 
     def exit_analyzer(self):
         self.operation_flag = False
@@ -33,7 +31,7 @@ class WorkflowMorphAnalyzer:
         else:
             return -1 
 
-    def __get_operation_flag(self):
+    def _get_operation_flag(self):
         return self.operation_flag
 
 
