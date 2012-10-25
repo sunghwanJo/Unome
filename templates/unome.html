@@ -2,42 +2,47 @@
 {% block title %}Welcome to Unome{% endblock %}
 {% block head %}
 {{ super() }}
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/jquery.mCustomScrollbar.css') }}">
-<script src="{{ url_for('static', filename='js/jquery.mousewheel.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/jquery.mCustomScrollbar.min.js') }}"></script>
+<link rel=stylesheet href="{{ url_for('static', filename='css/jquery.mCustomScrollbar.css') }}">
+<link rel=stylesheet href= "{{ url_for('static', filename='css/bootstrap.min.css') }}">
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
 {% endblock %}
 {% block content %}
-<div class="contents">
-    <div class="mainbar">
-        <div class="mainbar-left"> 
-            <h1 class="text-center">-</h1>
-            {% for tweet in g.tweets %}
-            <div class="ntweetbubble text-center" >{{ tweet.user.name }} : {{ tweet.text }}</div>
-            {% endfor %}
-        </div>   
-        <div class="mainbar-mid">
-            &nbsp; 
+<div class="container-fluid">
+    <div class="row-fluid content" style="margin:auto;width:80%">
+        <div class="span10">
+            <div class="row-fluid">
+                <div class="nbar span5">
+                    {% for tweet in g.tweets %}
+                    <div class="ntweetbubble text-center">
+                        {{ tweet.user.name }} : {{ tweet.text }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="midbar span1 text-center" style="background:red">
+                hi
+                </div>
+                <div class="pbar span5">
+                    {% for tweet in g.tweets %}
+                    <div class="ptweetbubble text-center">
+                        {{ tweet.user.name }} : {{ tweet.text }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-        <div class="mainbar-right"> 
-            <h1 class="text-center">+</h1>
-            {% for tweet in g.tweets %}
-            <div class="ptweetbubble text-center" >{{ tweet.user.name }} : {{ tweet.text }}</div>
-            {% endfor %}
-        </div>   
-    </div>
-    <div class="sidebar">
-     Side bar
+        <div class="span2"> 
+        Navigation
+        <div>
     </div>
 </div>
 <script>
-    $(function(){
-        console.log('jQuery init')
-        $('.mainbar').mCustomScrollbar({
-            scrollButtons:{
-                enable:true
-            }
-        });
+    $(function(){  
+        $(document).click(function(){
+            
+        $('.midbar').css('height', $('.pbar').css('height'))   
+            
+        }) 
     })
 </script>
 {% endblock %}

@@ -7,33 +7,31 @@
     <script src="{{ url_for('static', filename='js/jquery-1.8.2.min.js') }}"></script>
     {% endblock %}
 </head>
-    <body>
-        {% block header %}
-        <div class="header">
-            <div class="header-fixed">
-                <div class="header-inner">
-                    <span class="brand big-text font-Ranchers">Unome</span>
-                    <ul class="nav-main mid-text">
-                        <li><a href="#">Menu1</a></li>
-                    </ul>
-                    <ul class="nav-right mid-text">
-                        {% if g.user %}
-                        <li><a href="#">{{ g.user.name }}</a>|<a href="{{ url_for('logout')}}">sign out</a></li>
-                        {% else %}
-                        <li><a href="{{ url_for('login') }}">Sign in</a></li>
-                        {% endif %}
-                    </ul>
-                </div>
+<body>
+    {% block header %} 
+    <div class="header" style="margin-bottom:50px">
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <a class="brand" href="#">Unome</a>
+                <ul class="nav pull-left">
+                    <li class="active"><a href="#">Menu1</a></li>
+                    <li><a href="#">Menu2</a></li>
+                </ul>
+                <ul class="nav pull-right"> 
+                    {% if g.user %}
+                    <li><a href="#">{{ g.user.name }}</a></li>
+                    <li><a href="{{ url_for('logout')}}">sign out</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('login') }}">Sign in</a></li>
+                    {% endif %}
+                </ul>
             </div>
-        </div> 
-        {% endblock %}
-        <div class="container">
-        {% block content %} 
-        {% endblock %}
-        </div>    
-        {% block footer %}
-        <div class="footer">
-            <span class="text-center">&copy; Copyright 2012 by <a href="http://lum4n.blogspot.com">luman</a> and <a href="http://">pherox</a>.</span>
         </div>
-        {% endblock %}
+    </div>
+    {% endblock %}
+    {% block content %} 
+    {% endblock %}
+    {% block footer %}
+
+    {% endblock %}
 </body>
