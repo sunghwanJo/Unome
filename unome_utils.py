@@ -10,13 +10,15 @@ from pynanum import WorkflowMorphAnalyzer
 
 
 class TweetAnalyzer(WorkflowMorphAnalyzer):
-    strdic={}
+    analyzed_dict={}
     def __init__(self):
         WorkflowMorphAnalyzer.__init__(self)
 
-    def analyze_tweet(self, string):
+    def update_analyzed_dict(self, string):
         if self._get_operation_flag() == False:
-            exit()
+            return False
+        
+        string_index_list = string.split(' ')
         
         seperated_list = self.request_analyze(string).split('\n')
         for word in seperated_list:
@@ -24,8 +26,13 @@ class TweetAnalyzer(WorkflowMorphAnalyzer):
             if not len(word):
                 pass
             elif word.find('\t'):
-                parent = word
-                self.strdic[parent] = []
+                parent_node = word
+                self.analyzed_dict[parent_node] = []
             else:
-                self.strdic[parent].append(word.replace('\t', ''))
-        print self.strdic                          
+                self.analyzed_dict[parent_node].append(word.replace('\t', ''))
+        return self.analyzed_dict
+    
+   
+    def _get_analyzed_dict(self):
+        return self.analyzed_dict
+

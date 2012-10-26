@@ -1,7 +1,9 @@
+# -*- coding:utf-8 -*-
 from flask import Flask, render_template, session, request, redirect,url_for, flash, g
 from models import User, DB
 from twitter import *
 from twitter import __get_tweets
+from unome_utils import TweetAnalyzer
 
 
 # configuration
@@ -20,6 +22,7 @@ def before_request():
     g.user = None
     if 'user_id' in session:
         g.user = User.query.get(session['user_id'])
+
 @app.after_request
 def after_request(response):
     DB.db_session.remove()
@@ -43,7 +46,6 @@ def main_view():
 def get_timeline():
 
     return redirect(request.referrer or url_for('main_view'))
-
 
 @app.route('/twitter_login', methods={'POST', 'GET'})
 def login():
@@ -73,6 +75,13 @@ def oauth_authorized(resp):
     flash('You were signed in')
     return redirect(next_url)
 
+@app.route('/twtest')
+def test():
+    A = TweetAnalyzer()
+    A.start_analyzer()
+    print 
+    return A.analyze_tweet('조성환 입니다.')
+
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
@@ -87,5 +96,5 @@ def unome_view():
 
 # App start
 if __name__=='__main__':
-	app.run(host=HOST, port=PORT)
+    app.run(host=HOST, port=PORT)
 	
