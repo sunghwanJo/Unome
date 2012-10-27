@@ -1,10 +1,9 @@
 # -*- coding:utf-8 -*-
 from flask import Flask, render_template, session, request, redirect,url_for, flash, g
-from flask.ext.sqlalchemy import SQLAlchemy
 from twitter import *
 from twitter import __get_tweets
-from unome_utils import TweetAnalyzer
-from models import User
+from flask.ext.sqlalchemy import SQLAlchemy
+import unome_utils
 
 # configuration
 SECRET_KEY = 'development key'
@@ -13,8 +12,6 @@ PORT = 2074
 DEBUG = True
 DATABASE_URI = 'sqlite:////tmp/flask-oauth.db'
 
-# 만약 처음 DB실행시
-# db.create_all() 실행
 # setip flask
 app = Flask(__name__)
 app.debug = DEBUG
@@ -24,6 +21,7 @@ db = SQLAlchemy(app)
 
 @app.before_request
 def before_request():
+    from models import User
     g.user = None
     if 'user_id' in session:
         g.user = User.query.get(session['user_id'])
@@ -59,6 +57,7 @@ def login():
 @app.route('/oauth-athorized')
 @twitter.authorized_handler
 def oauth_authorized(resp):
+    from models import User
     print '-------OAuth Authorized Phase-------'
     next_url = url_for('unome_view')
     if resp is None:
@@ -79,13 +78,6 @@ def oauth_authorized(resp):
     flash('You were signed in')
     return redirect(next_url)
 
-@app.route('/twtest')
-def test():
-    A = TweetAnalyzer()
-    A.start_analyzer()
-    print 
-    return A.analyze_tweet('조성환 입니다.')
-
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
@@ -101,4 +93,3 @@ def unome_view():
 # App start
 if __name__=='__main__':
     app.run(host=HOST, port=PORT)
-	
