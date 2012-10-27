@@ -40,7 +40,7 @@ class TweetAnalyzer(WorkflowMorphAnalyzer):
 
 
     def add_emotion_data(self, emotion, value):
-        emotiontable = EmotionTable(emotion, value)
+        emotiontable = EmotionTable(emotion, unicode(value))
         db.session.add(emotiontable)
         db.session.commit()
 

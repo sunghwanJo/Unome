@@ -1,5 +1,6 @@
 # setting for ignoring trash files.
+*/.gitignore
+*/nohup.out
 *.swp
 *.pyc
 twitter.py
-nohup.out
