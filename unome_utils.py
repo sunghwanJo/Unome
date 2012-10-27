@@ -13,7 +13,7 @@ class TweetAnalyzer(WorkflowMorphAnalyzer):
     def __init__(self):
         WorkflowMorphAnalyzer.__init__(self)
 
-    def update_analyzed_table(self, string):
+    def get_emotion_point(self, string):
         analyzed_table = {}
         if self._get_operation_flag() == False:
             return False
@@ -38,14 +38,18 @@ class TweetAnalyzer(WorkflowMorphAnalyzer):
         
         return True   
 
-    # analyzed에서 적당한 값 찾기 -> 점수내기 -> 반영하기
-
-    def analyze_string(self, string):
-        pass
 
     def add_emotion_data(self, emotion, value):
         emotiontable = EmotionTable(emotion, value)
         db.session.add(emotiontable)
         db.session.commit()
 
-    
+    def compare_with_emotiontable(self, word):
+        #EmotionTable.query.filter_by(value=word)
+        pass
+
+    def compare_with_amptable(self, word):
+        pass
+
+    def compare_with_changetable(self, word):
+        pass
