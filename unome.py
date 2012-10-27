@@ -3,21 +3,19 @@ from flask import Flask, render_template, session, request, redirect,url_for, fl
 from twitter import *
 from twitter import __get_tweets
 from flask.ext.sqlalchemy import SQLAlchemy
-import unome_utils
 
 # configuration
 SECRET_KEY = 'development key'
 HOST = '0.0.0.0'
 PORT = 2074
 DEBUG = True
-DATABASE_URI = 'sqlite:////tmp/flask-oauth.db'
+DATABASE_URI = 'sqlite:////tmp/unome.db'
 
 # setip flask
 app = Flask(__name__)
 app.debug = DEBUG
 app.secret_key = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
-db = SQLAlchemy(app)
 
 @app.before_request
 def before_request():
@@ -93,3 +91,4 @@ def unome_view():
 # App start
 if __name__=='__main__':
     app.run(host=HOST, port=PORT)
+    import unome_utils

@@ -7,8 +7,7 @@ pyhannanumPath = os.path.join(os.path.abspath('.'),'pyhannanum')
 sys.path.append(pyhannanumPath)
 
 from pynanum import WorkflowMorphAnalyzer
-from unome import db
-from models import AnalyzedTable
+from models import EmotionTable, db
 
 class TweetAnalyzer(WorkflowMorphAnalyzer):
     def __init__(self):
@@ -35,13 +34,18 @@ class TweetAnalyzer(WorkflowMorphAnalyzer):
             if AnalyzedTable.query.filter_by(key=key).first():
                 pass
             else:
-                analyzedTable =AnalyzedTable(key, analyzed_dict[key])
-                db.session.add(analyzedTable)
-
-        db.session.commit()
+                pass
+        
         return True   
 
     # analyzed에서 적당한 값 찾기 -> 점수내기 -> 반영하기
 
     def analyze_string(self, string):
         pass
+
+    def add_emotion_data(self, emotion, value):
+        emotiontable = EmotionTable(emotion, value)
+        db.session.add(emotiontable)
+        db.session.commit()
+
+    
