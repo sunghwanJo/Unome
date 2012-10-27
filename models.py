@@ -1,27 +1,28 @@
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+from unome import db
 
-
-class DB:
-    DATABASE_URI = 'sqlite:////tmp/flask-oauth.db'
-
-    engine = create_engine(DATABASE_URI)
-    db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
-
-    Base = declarative_base()
-    Base.query = db_session.query_property()
-    # You if the first time you run this program. excute init_db() 
-    def init_db(self):
-        self.Base.metadata.create_all(bind = self.engine)
-    
-
-class User(DB.Base):
+class User(db.Model):
     __tablename__ = 'users'
-    id = Column('user_id', Integer, primary_key=True)
-    name = Column(String(60))
-    oauth_token = Column(String(200))
-    oauth_secret = Column(String(200))
+    id = db.Column('user_id', db.Integer, primary_key=True)
+    name = db.Column(db.String(60))
+    oauth_token = db.Column(db.String(200))
+    oauth_secret = db.Column(db.String(200))
 
     def __init__(self, name):
         self.name = name
+
+    def __repr__(self):
+        return '<Users %r>'%self.name
+
+class AnalyzedTable(db.Model):
+    __tablename__ = 'analyzedTable'
+    id = db.Column('analyzed_id', db.Integer, primary_key=True)
+    key = db.Column(db.String(20))
+    value = db.Column(db.String(200))
+
+    def __init__(self, key, value)
+        self.key = key
+        self.value = value
+
+    def __repr__(self)
+        return '<Key : %s>'%self.key
+

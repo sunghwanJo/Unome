@@ -1,21 +1,26 @@
 # -*- coding:utf-8 -*-
 from flask import Flask, render_template, session, request, redirect,url_for, flash, g
-from models import User, DB
+from flask.ext.sqlalchemy import SQLAlchemy
 from twitter import *
 from twitter import __get_tweets
 from unome_utils import TweetAnalyzer
-
+from models import User
 
 # configuration
 SECRET_KEY = 'development key'
 HOST = '0.0.0.0'
 PORT = 2074
 DEBUG = True
+DATABASE_URI = 'sqlite:////tmp/flask-oauth.db'
 
+# 만약 처음 DB실행시
+# db.create_all() 실행
 # setip flask
 app = Flask(__name__)
 app.debug = DEBUG
 app.secret_key = SECRET_KEY
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
+db = SQLAlchemy(app)
 
 @app.before_request
 def before_request():
@@ -25,7 +30,6 @@ def before_request():
 
 @app.after_request
 def after_request(response):
-    DB.db_session.remove()
     return response
 
 @twitter.tokengetter
@@ -65,11 +69,11 @@ def oauth_authorized(resp):
 
     if user is None:
         user = User(resp['screen_name'])
-        DB.db_session.add(user)
+        db.session.add(user)
 
     user.oauth_token = resp['oauth_token']
     user.oauth_secret = resp['oauth_token_secret']
-    DB.db_session.commit()
+    db.session.commit()
 
     session['user_id'] = user.id
     flash('You were signed in')
