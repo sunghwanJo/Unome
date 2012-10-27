@@ -31,11 +31,9 @@ class TweetAnalyzer(WorkflowMorphAnalyzer):
 
         
         for key in analyzed_dict.keys():
-            if AnalyzedTable.query.filter_by(key=key).first():
-                pass
-            else:
-                pass
-        
+            analyzed_dict[key]
+
+
         return True   
 
 
@@ -45,11 +43,13 @@ class TweetAnalyzer(WorkflowMorphAnalyzer):
         db.session.commit()
 
     def compare_with_emotiontable(self, word):
-        #EmotionTable.query.filter_by(value=word)
-        pass
+        emotion = EmotionTable.query.filter_by(value=unicode(word)).first().emotion
+        return emotion
 
     def compare_with_amptable(self, word):
-        pass
+        amp_point = 0
+        return amp_point
 
     def compare_with_changetable(self, word):
-        pass
+        change_flag = False
+        return change_flag
