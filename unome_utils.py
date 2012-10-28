@@ -15,9 +15,10 @@ class TweetAnalyzer(WorkflowMorphAnalyzer):
 
     def get_emotion_point(self, string):
         analyzed_table = {}
+        
         if self._get_operation_flag() == False:
             return False
-        
+        string_sequence = string.split(' ')
         seperated_list = self.request_analyze(string).split('\n')
         for word in seperated_list:
             word = word.replace('\n', '')
@@ -28,13 +29,15 @@ class TweetAnalyzer(WorkflowMorphAnalyzer):
                 analyzed_table[parent_node] = []
             else:
                 analyzed_table[parent_node].append(word.replace('\t', ''))
+            
+        for key in analyzed_table.keys():
+            for value in analyzed_table[key]:
+                emotion = self.compare_with_emotiontable(value)
+                if emotion:
+                    print emotion, string_sequence.index(key), key
+                    break  # analyzed_table[key]의 첫번째  value만 탐색i
 
-        
-        for key in analyzed_dict.keys():
-            analyzed_dict[key]
-
-
-        return True   
+        return True
 
 
     def add_emotion_data(self, emotion, value):
@@ -43,13 +46,25 @@ class TweetAnalyzer(WorkflowMorphAnalyzer):
         db.session.commit()
 
     def compare_with_emotiontable(self, word):
-        emotion = EmotionTable.query.filter_by(value=unicode(word)).first().emotion
-        return emotion
+        emotion_table = EmotionTable.query.all()
+        emotion = ''
+        for emotion_object in emotion_table:
+            if emotion_object.value in word:
+                emotion = emotion_object.emotion
+                break
+        if emotion:
+            return emotion
+
+        return False
+
 
     def compare_with_amptable(self, word):
-        amp_point = 0
+        amp_point = 1
         return amp_point
 
     def compare_with_changetable(self, word):
         change_flag = False
         return change_flag
+
+
+

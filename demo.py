@@ -5,32 +5,8 @@ import pynanum, sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-analyzer =  pynanum.WorkflowMorphAnalyzer()
-analyzer.operation_analyzer()
 
-#f = file('unome.log')
-
-#f.write(analyzer.request_analyze('안녕 하세요 저는 조성환입니다.'))
-"""
-strdic = {}
-for line in f.readlines():
-    line = line.replace('\n', '').replace('\t', '[TAB]')
-    if not len(line):
-        pass
-    elif line.find('[TAB]'):
-        parent = line
-        strdic[parent] = []  
-    else:
-        strdic[parent].append(line.replace('[TAB]', ''))
-
-for i in strdic.keys():
-    print i
-    for j in strdic[i]:
-        print "\t%s"%(j)
-"""
-
-print analyzer.request_analyze('안녕 하세요 저는 조성환입니다.').split('\n')
+b ={u'\uc54a+\uc544/ecs', u'\uc54a/paa+\uc544/ecx', u'\uc54a/paa+\uc544/ef', u'\uc54a/pvg+\uc544/ecs', u'\uc54a/pvg+\uc544/ecx', u'\uc54a/pvg+\uc544/ef', u'\uc54a/px+\uc544/ecs', u'\uc54a/px+\uc544/ecx', u'\uc54a/px+\uc544/ef'], u'\uc6b0\uc6b8\ud558\uc9c0': [u'\uc6b0\uc6b8/ncps+\ud558/xsms+\uc9c0/ecs', u'\uc6b0\uc6b8/ncps+\ud558/xsms+\uc9c0/ecx', u'\uc6b0\uc6b8/ncps+\ud558/xsms+\uc9c0/ef'], u'\ub098\ub294': [u'\ub098/ncn+\ub294/jxc', u'\ub098/npp+\ub294/jxc', u'\ub098/pvg+\ub294/etm', u'\ub098/px+\ub294/etm', u'\ub098/pvg+\uc544/ecs+\ub294/jxc', u'\ub098/pvg+\uc544/ef+\ub294/etm', u'\ub098/px+\uc544/ecs+\ub294/jxc', u'\ub098/px+\uc544/ef+\ub294/etm', u'\ub0a0/pvg+\ub294/etm'], u'\ud558\ub098\ub3c4': [u'\ud558\ub098/nnc+\ub3c4/jxc', u'\ud558\ub098/nnc+\ub3c4/nbu', u'\ud558/pvg+\uc5b4/ecs+\ub098/jxc+\ub3c4/jxc', u'\ud558/pvg+\uc5b4/ecx+\ub098/px+\uc544/ecs', u'\ud558/pvg+\uc5b4/ecx+\ub098/px+\uc544/ef', u'\ud558/pvg+\uc5b4/ecx+\ub098/px+\uc544/ecs+\ub3c4/jxc', u'\ud558/px+\uc5b4/ecs+\ub098/jxc+\ub3c4/jxc', u'\ud558/px+\uc5b4/ecx+\ub098/px+\uc544/ecs', u'\ud558/px+\uc5b4/ecx+\ub098/px+\uc544/ef', u'\ud558/px+\uc5b4/ecx+\ub098/px+\uc544/ecs+\ub3c4/jxc', u'\ud558/pvg+\ub098/ecs+\ub3c4/jxc', u'\ud558/px+\ub098/ecs+\ub3c4/jxc']}
 
 
-f.close()
 
