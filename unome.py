@@ -56,6 +56,7 @@ def login():
 @twitter.authorized_handler
 def oauth_authorized(resp):
     from models import User
+    from models import db
     print '-------OAuth Authorized Phase-------'
     next_url = url_for('unome_view')
     if resp is None:
