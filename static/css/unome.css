@@ -1,1 +1,25 @@
+.tweet-user-profile-image {
+    float:left;
+    position:relative;
+    padding:3px;
+    width:54px;
+    background-color:#000000;
+}
+
+.tweet-user-screen-name {
+    position:relative;
+    color:#383838;
+    display:inline;
+}
+
+.tweet-user-name {
+    position:relative;
+    color:#151B1E;
+    display:inline;
+}
+
+.tweet-user-name:hover {
+    text-decoration:underline;
+    color:#FFE0FF;
+}
 
