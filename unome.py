@@ -17,77 +17,9 @@ app.debug = DEBUG
 app.secret_key = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 
-@app.before_request
-def before_request():
-    from models import User
-    g.user = None
-    if 'user_id' in session:
-        g.user = User.query.get(session['user_id'])
-
-@app.after_request
-def after_request(response):
-    return response
-
-@twitter.tokengetter
-def get_twitter_token(token=None):
-    user = g.user
-    if user is not None:
-        return user.oauth_token, user.oauth_secret
-
 @app.route('/')
-def main_view():
-    tweets = None
-    if g.user is not None:
-        __get_tweets()
-        return render_template('index.html', tweets = g.tweets)    
+def index():
     return render_template('index.html')
-
-@app.route('/get_tweet')
-def get_timeline():
-
-    return redirect(request.referrer or url_for('main_view'))
-
-@app.route('/twitter_login', methods={'POST', 'GET'})
-def login():
-	return twitter.authorize(callback=url_for('oauth_authorized', 
-        next=request.args.get('next') or request.referrer or None))
-
-@app.route('/oauth-athorized')
-@twitter.authorized_handler
-def oauth_authorized(resp):
-    from models import User
-    from models import db
-    print '-------OAuth Authorized Phase-------'
-    next_url = url_for('unome_view')
-    if resp is None:
-        flash(u'You denied the request to sign in.')
-        return redirect(next_url)
-	
-    user = User.query.filter_by(name=resp['screen_name']).first()
-
-    if user is None:
-        user = User(resp['screen_name'])
-        db.session.add(user)
-
-    user.oauth_token = resp['oauth_token']
-    user.oauth_secret = resp['oauth_token_secret']
-    db.session.commit()
-
-    session['user_id'] = user.id
-    flash('You were signed in')
-    return redirect(next_url)
-
-@app.route('/logout')
-def logout():
-    session.pop('user_id', None)
-    return redirect(request.referrer or url_for('main_view'))
-
-@app.route('/unome')
-def unome_view():
-    if g.user:
-        __get_tweets()
-    return render_template('unome.html')
-
 
 # App start
 if __name__=='__main__':
