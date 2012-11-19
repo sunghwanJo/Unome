@@ -3,7 +3,7 @@ import unome
 
 db = SQLAlchemy(unome.app)
 
-class EmotionTable(db.Model):
+class EmotionObject(db.Model):
     __tablename__ = 'EmotionTable'
     id = db.Column('emotion_id', db.Integer, primary_key=True)
     emotion = db.Column(db.String(10))
@@ -16,14 +16,13 @@ class EmotionTable(db.Model):
     def __repr__(self):
         return '<Emotion : %s>'%self.emotion
 
-class NegativeTable(db.Model):
+class NegativeObject(db.Model):
     __tablename__ = 'NegativeTable'
     id = db.Column('negative_id', db.Integer, primary_key=True)
     negative_word = db.Column(db.String(10))
 
-    def __init__(self, negative_word, value):
+    def __init__(self, negative_word):
         self.negative_word = negative_word
-        self.value = value
 
     def __repr__(self):
         return '<NegativeWord : %s>'%self.negative_word
